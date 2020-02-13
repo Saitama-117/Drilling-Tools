@@ -1,7 +1,7 @@
 <?php
-    function createUserTableIfNeeded($db)
+    function createAdminsTableIfNeeded($db)
     {
-        $query = "CREATE TABLE IF NOT EXISTS Users (
+        $query = "CREATE TABLE IF NOT EXISTS admins (
                               userid int NOT NULL,
                               username nvarchar(20),
                               password nvarchar(256),
@@ -11,7 +11,7 @@
 
     function checkUserLogin($db, $username, $password) {
         $return = null;
-        $query = "SELECT userid FROM User WHERE username = ? and password = ?";
+        $query = "SELECT userid FROM admins WHERE username = ? and password = ?";
         $stmt = $db->prepare($query);
         //Prepared statement, string only
         $hashedPassword = sha1($password);
@@ -24,18 +24,18 @@
         return $return;
     }
 
-    function insertUser($db, $username, $password) {
-        $query = "INSERT INTO Users (username, password) VALUES (?, ?)";
+    function insertUser($db, $userid, $username, $password) {
+        $query = "INSERT INTO admins (userid, username, password) VALUES (?, ?, ?)";
         $hashedPassword = sha1($password);
         $stmt = $db->prepare($query);
-        $stmt->bind_param('ss', $username, $hashedPassword);
+        $stmt->bind_param('iss', $userid, $username, $hashedPassword);
         $stmt->execute();
         return ($stmt->affected_rows > 0);
     }
 
     function findUser($db, $username) {
         $result = array();
-        $query = "SELECT userid FROM User WHERE username = ?";
+        $query = "SELECT userid FROM admins WHERE username = ?";
         $stmt = $db->prepare($query);
         $stmt->bind_param('s', $username);
         $stmt->execute();
