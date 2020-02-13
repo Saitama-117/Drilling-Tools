@@ -9,4 +9,3 @@ if (mysqli_connect_errno()) {
     $feedback .= '<p>Error: Could not connect to database. Please try again later.</p>';
     exit;
 }
-?>
