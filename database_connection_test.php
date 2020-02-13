@@ -23,6 +23,7 @@ $db->close();
     <head>
         <meta charset="utf-8">
         <title>Database Test Screen</title>
+        <link rel="stylesheet" href="Assets/CSS/database-test-page.css">
     </head>
     <body>
         <h1>Database Test</h1>
