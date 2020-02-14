@@ -35,12 +35,12 @@
 
     function findUser($db, $username) {
         $result = array();
-        $query = "SELECT userid FROM admins WHERE username = ?";
+        $query = "SELECT username FROM admins WHERE username = ?";
         $stmt = $db->prepare($query);
         $stmt->bind_param('s', $username);
         $stmt->execute();
         $stmt->store_result();
-        $stmt->bind_result( $result[username]);
+        $stmt->bind_result($result['username']);
         $stmt->fetch();
         $stmt->free_result();
         return $result;
