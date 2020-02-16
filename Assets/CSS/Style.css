@@ -1,0 +1,94 @@
+#nav{
+    width: 100%;
+    background-color: #ddd;
+    height: 50px;
+    margin-top: 20px;
+    /*position: fixed;*/
+    margin-top: 10px;
+    width: 1000px;
+    margin-left:1px;
+
+}
+
+#nav li a:hover{
+    color:red;
+}
+clear{
+    clear:both;
+}
+
+#nav ul{
+    list-style: none;
+    margin: auto;
+    display: block;
+    margin: auto;
+    padding: 15px;
+    display: flex;
+}
+
+ul>li{
+    list-style-type: none;
+    float: left;
+    padding: 5px;
+    max-resolution: 2px;
+    margin: auto;
+    display: flex;
+}
+
+footer>h2{
+    font-size: 10px;
+    justify-content: space-around;
+}
+
+body{
+    max-width: 1000px;
+
+
+}
+
+/*log in*/
+
+img.avatar {
+    width: 10%;
+    border-radius: 10%;
+}
+#contentbox{
+    background-color: #fefefe;
+    margin: 5% auto 15% auto;
+    border: 1px solid #888;
+    width: 50%;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/*Styling buttons*/
+button {
+    background-color: gray;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+.cancelbtn{
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+}
