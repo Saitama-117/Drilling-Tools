@@ -1,5 +1,5 @@
 <?php
-    function checkCreateUserData($userName, $password) {
+    function checkUserData($userName, $password) {
         $feedback = null;
         // Check for a user name
         if (!isSetandNotEmpty($userName)) {
@@ -12,6 +12,7 @@
         }
         return $feedback;
     }
+
     function isSetandNotEmpty($value) {
         $valid = true;
         if (isset($value))
