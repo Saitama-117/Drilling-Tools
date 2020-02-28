@@ -1,9 +1,9 @@
 <?php
 
 //includes
-include("Includes/Database/db_connect.php");
-include("Includes/Database/userQueries.php");
-include("Includes/Utilities/DataValidation.php");
+include("../Includes/Database/db_connect.php");
+include("../Includes/Database/userQueries.php");
+include("../Includes/Utilities/DataValidation.php");
 
 // Define admin credentials
 $username = 'admin';
@@ -45,13 +45,12 @@ $db->close();
     <head>
         <meta charset="utf-8">
         <title>Database Test Screen</title>
-        <link rel="stylesheet" href="Assets/CSS/database-test-page.css">
+        <link rel="stylesheet" href="../Assets/CSS/database-test-page.css">
     </head>
     <body>
         <h1>Database Tests</h1>
         <p>Admin create result - <?php echo $userCreateFeedback ?></p>
         <p>Admin valid login result - <?php echo $userLoginFeedback ?></p>
         <p>Hacker login result - <?php echo $attackFeedback ?></p>
-
     </body>
 </html>
