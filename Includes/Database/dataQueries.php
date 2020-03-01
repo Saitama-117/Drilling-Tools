@@ -12,7 +12,7 @@ function createToolTableIfNeeded($db)
                               minTemp float NOT NULL,
                               maxTemp float NOT NULL,
                               minPressure float NOT NULL,
-                              maxPressure float NOT NULL,,
+                              maxPressure float NOT NULL,
                               PRIMARY KEY(toolID))";
     $result = $db->query($query);
 }
@@ -56,7 +56,7 @@ function readToolData($db, $toolID) {
 
 function readTubularData($db, $tubularID) {
     $result = array();
-    $query = "SELECT OD, ID, weight FROM tools WHERE toolID = ?";
+    $query = "SELECT OD, ID, weight FROM tubulars WHERE tubularID = ?";
     $stmt = $db->prepare($query);
     $stmt->bind_param('i', $tubularID);
     $stmt->execute();
@@ -65,6 +65,29 @@ function readTubularData($db, $tubularID) {
     $stmt->fetch();
     $stmt->free_result();
     return $result;
+}
+
+function readAllTubulars($db) {
+    // Variable declarations
+    $OD = null;
+    $ID = null;
+    $weight = null;
+    $results = array();
+    $index = 0;
+
+    // Read data
+    $query = "SELECT OD, ID, weight FROM tubulars";
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+    $stmt->bind_result($OD, $ID, $weight);
+    while ($stmt->fetch()) {
+        $results[$index]['OD'] = $OD;
+        $results[$index]['ID'] = $ID;
+        $results[$index]['weight'] = $weight;
+        $index += 1;
+    }
+    $stmt->free_result();
+    return $results;
 }
 
 function readTubularsToolCuts($db, $toolID) {
@@ -97,7 +120,7 @@ function readTubularsToolCuts($db, $toolID) {
 
 function checkIfToolExists($db, $OD, $minTemp, $maxTemp, $minPressure, $maxPressure) {
     $return = null;
-    $query = "SELECT toolID FROM tools WHERE OD = ? and weight = ? and maxTemp = ? and minPressure = ? and maxPressure = ?";
+    $query = "SELECT toolID FROM tools WHERE OD = ? and minTemp = ? and maxTemp = ? and minPressure = ? and maxPressure = ?";
     $stmt = $db->prepare($query);
     $stmt->bind_param('ddddd', $OD, $minTemp, $maxTemp, $minPressure, $maxPressure);
     $stmt->execute();
@@ -125,7 +148,7 @@ function checkIfToolAlreadyCutsTubular($db, $toolID, $tubularID) {
     $return = null;
     $query = "SELECT tubularID FROM cuts WHERE toolID = ? and tubularID = ?";
     $stmt = $db->prepare($query);
-    $stmt->bind_param('dd', $toolID, $tubularID);
+    $stmt->bind_param('ii', $toolID, $tubularID);
     $stmt->execute();
     $stmt->store_result();
     $stmt->bind_result($return);
@@ -147,17 +170,17 @@ function insertTool($db, $OD, $minTemp, $maxTemp, $minPressure, $maxPressure) {
 }
 
 function insertTubular($db, $OD, $ID, $weight) {
-    $query = "INSERT INTO tools (OD, ID, weight) VALUES (?, ?, ?)";
+    $query = "INSERT INTO tubulars (OD, ID, weight) VALUES (?, ?, ?)";
     $stmt = $db->prepare($query);
     $stmt->bind_param('ddd', $OD, $ID, $weight);
     $stmt->execute();
     return ($stmt->affected_rows > 0);
 }
 
-function insertToolCutsTubular($toolID, $tubularID) {
+function insertToolCutsTubular($db, $toolID, $tubularID) {
     $query = "INSERT INTO cuts (toolID, tubularID) VALUES (?, ?)";
     $stmt = $db->prepare($query);
-    $stmt->bind_param('dd', $toolID, $tubularID);
+    $stmt->bind_param('ii', $toolID, $tubularID);
     $stmt->execute();
     return ($stmt->affected_rows > 0);
 }
