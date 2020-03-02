@@ -33,7 +33,9 @@ function createToolTubularLinkIfNeeded($db)
     $query = "CREATE TABLE IF NOT EXISTS cuts (
                               toolID int NOT NULL,
                               tubularID int NOT NULL,
-                              PRIMARY KEY(toolID, tubularID))";
+                              PRIMARY KEY(toolID, tubularID),
+                              FOREIGN KEY(toolID) REFERENCES tools(toolID) ON DELETE CASCADE, 
+                              FOREIGN KEY(tubularID) REFERENCES tubulars(tubularID) ON DELETE CASCADE)";
     $result = $db->query($query);
 }
 
