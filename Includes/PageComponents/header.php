@@ -16,6 +16,7 @@ if (isset($_SESSION['user'])) {
                     <!-- <li><a href="#findtool">Find a Tool</a></li> -->
                     <li><a href="#contact">Contact Us</a></li>
                     <?php if ($user != null) {
+                        echo "<li><a href=\"addTool.php\">Add Tool/Tubular Data</a></li>";
                         echo "<li><a href=\"logout.php\">Logged in as: " . $user . " (Logout)</a></li>";
                     }  else {
                         echo "<li><a href=\"login.php\">Log in</a> </li>";
