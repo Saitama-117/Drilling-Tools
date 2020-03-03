@@ -74,7 +74,7 @@ session_start();
             <h2>Tool/Tubular Link</h2>
         </div>
         <!--  LIST BEGINS-->
-        <form class="w3-container w3-card-4" ID="TUBULAR" >
+        <div class="w3-container w3-card-4" ID="TOOL" >
             <h2>LINK TOOLS</h2>
             <p>
                 <input class="w3-radio" type="radio" name="gender" value="Tool1" >
@@ -86,9 +86,9 @@ session_start();
                 <input class="w3-radio" type="radio" name="gender" value="Tool3" >
                 <label>Tool 3</label>
             </p>
-        </form>
+        </div>
 
-        <form class="w3-container w3-card-4" ID="TOOL">
+        <div class="w3-container w3-card-4" ID="TUBULAR">
             <p>
                 <input class="w3-check" type="checkbox" checked="checked">
                 <label>TOOL1</label></p>
@@ -98,9 +98,8 @@ session_start();
             <p>
                 <input class="w3-check" type="checkbox" >
                 <label>TOOL3</p>
-        </form>
+        </div>
         <button class="w3-btn w3-gray">Link</button></p>
-
     </section>
 </main>
 <!FOOTER BEGIN>

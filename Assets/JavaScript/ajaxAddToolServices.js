@@ -15,9 +15,9 @@ $(function()
         }
     );
 
-    //populate checkbox lists after the page is loaded.
-    //populateTubularCheckBoxList();
-    //populateToolCheckBoxList();
+    //populate radio checkbox lists after the page is loaded
+    populateTubularCheckBoxList();
+    populateToolRadioList();
     }
 );
 
@@ -39,8 +39,8 @@ function addTubularToDatabase()
     //send Ajax request
     $.post(url, data, function(result){
         alert(result.message);
+        populateTubularCheckBoxList();
     });
-    // populateTubularCheckBoxList();
 }
 
 /*
@@ -65,14 +65,57 @@ function addToolToDatabase()
     //send Ajax request
     $.post(url, data, function(result){
         alert(result.message);
+        populateToolRadioList();
     });
-    // populateToolCheckBoxList();
 }
 
 /*
 Function to populate tubular checkbox list
  */
-function populateTubularCheckBoxList(keyword)
+function populateTubularCheckBoxList()
 {
+    var url="./Assets/AjaxServices/ReadTubulars.php";
+    var data={};
 
-} //end function
+    $.getJSON(  url, data,
+        function(result)
+        {
+            $("#TUBULAR").empty();      //remove all children first
+            for (var index in result)
+            {
+                var tubular=result[index];
+                var htmlCode="<p>";
+                htmlCode+="<input class='w3-check' type='checkbox' value='"+ tubular["tubularID"]+"'>";
+                htmlCode+="<label>OD: "+tubular["OD"]+" ID: "+tubular["ID"]+" Weight: "+tubular["weight"]+"</label>";
+                htmlCode+="</p>";
+                $("#TUBULAR").append(htmlCode);
+            }
+        }
+    );
+}
+
+/*
+Function to populate tubular checkbox list
+ */
+function populateToolRadioList()
+{
+    var url="./Assets/AjaxServices/ReadTools.php";
+    var data={};
+
+    $.getJSON(  url, data,
+        function(result)
+        {
+            $("#TOOL").empty();      //remove all children first
+            for (var index in result)
+            {
+                var tool=result[index];
+                var htmlCode="<p>";
+                htmlCode+="<input class='w3-radio' type='radio' name='tool' value='"+ tool["toolID"]+"'>";
+                htmlCode+="<label>OD: "+tool["OD"]+" in, Min Temp: "+tool["minTemp"]+" degC, Max Temp: "+tool["maxTemp"]+" degC, ";
+                htmlCode += " Min Pressure: "+tool["minPressure"]+" psi, Max Pressure: "+tool["maxPressure"]+"psi</label>";
+                htmlCode+="</p>";
+                $("#TOOL").append(htmlCode);
+            }
+        }
+    );
+}

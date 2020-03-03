@@ -26,6 +26,7 @@ function readTubularData($db, $tubularID) {
 
 function readAllTubulars($db) {
     // Variable declarations
+    $tubularID = null;
     $OD = null;
     $ID = null;
     $weight = null;
@@ -33,11 +34,12 @@ function readAllTubulars($db) {
     $index = 0;
 
     // Read data
-    $query = "SELECT OD, ID, weight FROM tubulars";
+    $query = "SELECT tubularID, OD, ID, weight FROM tubulars";
     $stmt = $db->prepare($query);
     $stmt->execute();
-    $stmt->bind_result($OD, $ID, $weight);
+    $stmt->bind_result($tubularID, $OD, $ID, $weight);
     while ($stmt->fetch()) {
+        $results[$index]['tubularID'] = $tubularID;
         $results[$index]['OD'] = $OD;
         $results[$index]['ID'] = $ID;
         $results[$index]['weight'] = $weight;

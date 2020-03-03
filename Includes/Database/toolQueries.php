@@ -25,6 +25,35 @@ function readToolData($db, $toolID) {
     return $result;
 }
 
+function readAllTools($db) {
+    // Variable declarations
+    $toolID = null;
+    $OD = null;
+    $minTemp = null;
+    $maxTemp = null;
+    $minPressure = null;
+    $maxPressure = null;
+    $results = array();
+    $index = 0;
+
+    // Read data
+    $query = "SELECT toolID, OD, minTemp, maxTemp, minPressure, maxPressure FROM tools";
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+    $stmt->bind_result($toolID, $OD, $minTemp, $maxTemp, $minPressure, $maxPressure);
+    while ($stmt->fetch()) {
+        $results[$index]['toolID'] = $toolID;
+        $results[$index]['OD'] = $OD;
+        $results[$index]['minTemp'] = $minTemp;
+        $results[$index]['maxTemp'] = $maxTemp;
+        $results[$index]['minPressure'] = $minPressure;
+        $results[$index]['maxPressure'] = $maxPressure;
+        $index += 1;
+    }
+    $stmt->free_result();
+    return $results;
+}
+
 function checkIfToolExists($db, $OD, $minTemp, $maxTemp, $minPressure, $maxPressure) {
     $return = null;
     $query = "SELECT toolID FROM tools WHERE OD = ? and minTemp = ? and maxTemp = ? and minPressure = ? and maxPressure = ?";
