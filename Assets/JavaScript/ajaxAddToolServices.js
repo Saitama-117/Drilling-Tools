@@ -15,6 +15,12 @@ $(function()
         }
     );
 
+    // Set up the click handler of the add tubular button
+    $("#linkToolTubular").click(function () {
+            addCutToDatabase();
+        }
+    );
+
     //populate radio checkbox lists after the page is loaded
     populateTubularCheckBoxList();
     populateToolRadioList();
@@ -34,9 +40,8 @@ function addTubularToDatabase()
     var data={  "tubularOD":tubularOD,
                 "tubularID":tubularID,
                 "weight":weight
-                };   //request parameters as a map
+                };
 
-    //send Ajax request
     $.post(url, data, function(result){
         alert(result.message);
         populateTubularCheckBoxList();
@@ -60,12 +65,35 @@ function addToolToDatabase()
                 "maxPressure":maxPressure,
                 "minTemp":minTemp,
                 "maxTemp":maxTemp
-    };   //request parameters as a map
+    };
 
-    //send Ajax request
     $.post(url, data, function(result){
         alert(result.message);
         populateToolRadioList();
+    });
+}
+
+/*
+ *Function to handle add tool/tubular link button
+ */
+function addCutToDatabase()
+{
+    // Get tool ID
+    var toolID = $("input[name='tool']:checked").val();
+
+    // Get tubular IDs
+    var tubulars = [];
+    $.each($("input[name='tubulars']:checked"), function(){
+        tubulars.push($(this).val());
+    });
+
+    var url="./Assets/AjaxServices/AddCuts.php";
+    var data={  "toolID":toolID,
+                "tubulars":tubulars
+    };
+
+    $.post(url, data, function(result){
+        alert(result.message);
     });
 }
 
@@ -85,7 +113,7 @@ function populateTubularCheckBoxList()
             {
                 var tubular=result[index];
                 var htmlCode="<p>";
-                htmlCode+="<input class='w3-check' type='checkbox' value='"+ tubular["tubularID"]+"'>";
+                htmlCode+="<input class='w3-check' type='checkbox' name='tubulars' value='"+ tubular["tubularID"]+"'>";
                 htmlCode+="<label>OD: "+tubular["OD"]+" ID: "+tubular["ID"]+" Weight: "+tubular["weight"]+"</label>";
                 htmlCode+="</p>";
                 $("#TUBULAR").append(htmlCode);

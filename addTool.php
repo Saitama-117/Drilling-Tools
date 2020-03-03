@@ -77,29 +77,29 @@ session_start();
         <div class="w3-container w3-card-4" ID="TOOL" >
             <h2>LINK TOOLS</h2>
             <p>
-                <input class="w3-radio" type="radio" name="gender" value="Tool1" >
+                <input class="w3-radio" type="radio" name="tool" value="Tool1" >
                 <label>Tool 1</label>
             <p>
-                <input class="w3-radio" type="radio" name="gender" value="Tool2" >
+                <input class="w3-radio" type="radio" name="tool" value="Tool2" >
                 <label>Tool 2</label>
             <p>
-                <input class="w3-radio" type="radio" name="gender" value="Tool3" >
+                <input class="w3-radio" type="radio" name="tool" value="Tool3" >
                 <label>Tool 3</label>
             </p>
         </div>
 
         <div class="w3-container w3-card-4" ID="TUBULAR">
             <p>
-                <input class="w3-check" type="checkbox" checked="checked">
+                <input class="w3-check" type="checkbox" name="tubulars" checked="checked">
                 <label>TOOL1</label></p>
             <p>
-                <input class="w3-check" type="checkbox">
+                <input class="w3-check" type="checkbox" name="tubulars">
                 <label> TOOL2</label></p>
             <p>
-                <input class="w3-check" type="checkbox" >
+                <input class="w3-check" type="checkbox" name="tubulars">
                 <label>TOOL3</p>
         </div>
-        <button class="w3-btn w3-gray">Link</button></p>
+        <button class="w3-btn w3-gray" id="linkToolTubular">Link</button></p>
     </section>
 </main>
 <!FOOTER BEGIN>
