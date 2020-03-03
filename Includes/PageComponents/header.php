@@ -5,7 +5,7 @@ if (isset($_SESSION['user'])) {
     $user = null;
 }
 ?>
-<img id="Specialist Cutting Tools" src="./Assets/images/header1.gif" alt="Specialist Cutting Tools"/>
+<img id="Specialist Cutting Tools" src="./Assets/images/logoedited.png" alt="Specialist Cutting Tools"/>
 <div class="container">
     <header id="mast">
         <div>
