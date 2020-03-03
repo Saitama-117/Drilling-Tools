@@ -41,6 +41,9 @@ $db->close();
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="./Assets/CSS/Style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 
@@ -65,7 +68,7 @@ $db->close();
         </div>
 
         <div class="container" style="background-color:#f1f1f1">
-            <a href="HomeV1.html"> <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button></a>
+            <a href="index.php"> <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button></a>
             <span class="psw">Forgot <a href="http://localhost:63342/DrillingTools/HomeV1.html?_ijt=8u1mt7ts3kqu7257p7a9icm344#contact">password?</a></span>
         </div>
     </form>
