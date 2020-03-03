@@ -14,17 +14,15 @@ if (IsSet($_POST) && IsSet($_POST["toolID"]) && IsSet($_POST["tubulars"])) {
     $tubulars = $_POST['tubulars'];
 
     header("Content-type: application/json");
-    $message = "Cut(s) Already in Database";
+    $message = "Select Cut(s) Stored in Database";
     $index = 0;
 
     foreach ($tubulars as $tubular) {
-        //$validData = validTubularData($tubularOD, $tubularID, $weight);
         $tubularID = $tubular[$index];
         $notInDatabase = empty(checkIfToolAlreadyCutsTubular($db, $toolID, $tubularID));
 
         if ($notInDatabase) {
             insertToolCutsTubular($db, $toolID, $tubularID);
-            $message = "Cut(s) Added";
         }
     }
 
