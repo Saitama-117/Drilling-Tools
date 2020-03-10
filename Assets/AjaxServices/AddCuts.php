@@ -23,7 +23,9 @@ if (IsSet($_POST) && IsSet($_POST["toolID"]) && IsSet($_POST["tubulars"])) {
 
         if ($notInDatabase) {
             insertToolCutsTubular($db, $toolID, $tubularID);
-        }
+            $message = "Cuts Added";
+        } else
+            $message = "Selected Cuts Already Exist";
     }
 
     echo json_encode(['message' => $message]);
