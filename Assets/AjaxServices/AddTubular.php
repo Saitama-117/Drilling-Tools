@@ -9,7 +9,7 @@ function validTubularData($tubularOD, $tubularID, $weight) {
 if (IsSet($_POST) && IsSet($_POST["tubularOD"]) && IsSet($_POST["tubularID"]) && IsSet($_POST["weight"])) {
         // Open database connection and get includes
         require_once "../../Includes/Database/db_connect.php";
-        include "../../Includes/Database/dataQueries.php";
+        include "../../Includes/Database/tubularQueries.php";
 
         // DEVELOPMENT ONLY
         createTubularTableIfNeeded($db);
@@ -20,13 +20,18 @@ if (IsSet($_POST) && IsSet($_POST["tubularOD"]) && IsSet($_POST["tubularID"]) &&
         $weight = trim($_POST['weight']);
 
         header("Content-type: application/json");
-        if (validTubularData($tubularOD, $tubularID, $weight)
-            && empty(checkIfTubularExists($db, $tubularOD, $tubularID, $weight))) {
+        $message = "";
+        $validData = validTubularData($tubularOD, $tubularID, $weight);
+        $notInDatabase = empty(checkIfTubularExists($db, $tubularOD, $tubularID, $weight));
+
+        if ($validData && $notInDatabase) {
             insertTubular($db, $tubularOD, $tubularID, $weight);
-            echo json_encode(['message' => 'Tubular Added']);
+            $message = "Tubular Added";
         } else {
-            echo json_encode(['message' => 'Tubular Not Added']);
+            if (!$validData) $message = "Error in Tubular Data";
+            if (!$notInDatabase) $message = "Tubular Already in Database";
         }
+        echo json_encode(['message' => $message]);
         http_response_code(200);
 
         $db->close();

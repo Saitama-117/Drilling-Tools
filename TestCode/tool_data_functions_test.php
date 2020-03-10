@@ -2,7 +2,9 @@
 
 // Includes
 include("../Includes/Database/db_connect.php");
-include("../Includes/Database/dataQueries.php");
+include("../Includes/Database/toolQueries.php");
+include("../Includes/Database/tubularQueries.php");
+include("../Includes/Database/cutsQueries.php");
 
 // Define tables if required
 createToolTableIfNeeded($db);
@@ -42,10 +44,10 @@ if (empty(checkIfTubularExists($db, $tubularOD, $tubularID, $weight))) {
 // Write cut data test
 $toolIdNo = 1;
 $tubularIDNo = 1;
-$cutExists1 = "Cut existed already";
+$cutExists1 = "Cut1 existed already";
 if (empty(checkIfToolAlreadyCutsTubular($db, $toolIdNo, $tubularIDNo))) {
     insertToolCutsTubular($db, $toolIdNo, $tubularIDNo);
-    $cutExists1 = "Cut created";
+    $cutExists1 = "Cut1 created";
 }
 
 $toolIdNo = 1;
