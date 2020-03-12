@@ -114,7 +114,7 @@ function populateTubularCheckBoxList()
                 var tubular=result[index];
                 var htmlCode="<p>";
                 htmlCode+="<input class='w3-check' type='checkbox' name='tubulars' value='"+ tubular["tubularID"]+"'>";
-                htmlCode+="<label>OD: "+tubular["OD"]+" ID: "+tubular["ID"]+" Weight: "+tubular["weight"]+"</label>";
+                htmlCode+="<label>OD: "+tubular["OD"]+" in, ID: "+tubular["ID"]+" in, Weight: "+tubular["weight"]+" ppf</label>";
                 htmlCode+="</p>";
                 $("#TUBULAR").append(htmlCode);
             }
@@ -139,7 +139,7 @@ function populateToolRadioList()
                 var tool=result[index];
                 var htmlCode="<p>";
                 htmlCode+="<input class='w3-radio' type='radio' name='tool' value='"+ tool["toolID"]+"'>";
-                htmlCode+="<label>OD: "+tool["OD"]+" in, Min Temp: "+tool["minTemp"]+" degC, Max Temp: "+tool["maxTemp"]+" degC, ";
+                htmlCode+="<label>OD: "+tool["OD"]+" in, Min Temp: "+tool["minTemp"]+" &#8451, Max Temp: "+tool["maxTemp"]+" &#8451, ";
                 htmlCode += " Min Pressure: "+tool["minPressure"]+" psi, Max Pressure: "+tool["maxPressure"]+"psi</label>";
                 htmlCode+="</p>";
                 $("#TOOL").append(htmlCode);

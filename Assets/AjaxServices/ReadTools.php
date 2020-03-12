@@ -10,6 +10,7 @@ if ($_SERVER["REQUEST_METHOD"]=="GET") {
 
     header("Content-type: application/json");
     http_response_code(200);
+    $toReturn = array();
     foreach ($tools as $tool)       //iterate through rows in result
     {
         $toReturn[]=$tool;       //append to PHP array

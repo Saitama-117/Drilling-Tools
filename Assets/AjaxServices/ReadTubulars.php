@@ -10,6 +10,7 @@ if ($_SERVER["REQUEST_METHOD"]=="GET") {
 
     header("Content-type: application/json");
     http_response_code(200);
+    $toReturn = array();
     foreach ($tubulars as $tubular)       //iterate through rows in result
     {
         $toReturn[]=$tubular;       //append to PHP array

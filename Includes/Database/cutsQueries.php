@@ -35,31 +35,6 @@ function readTubularsToolCuts($db, $toolID) {
     return $results;
 }
 
-function getCutsFromTubularIdTemperatureAndPressure($db, $toolId, $temperature, $pressure){
-    $OD = null;
-    $ID = null;
-    $weight = null;
-    $results = array();
-    $index = 0;
-
-    $query = "SELECT tubulars.OD, tubulars.ID, tubulars.weight FROM tubulars, cuts, tools 
-        WHERE cuts.tubularID = tubulars.tubularID AND tools.toolID = cuts.toolID AND cuts.toolID = ?
-        AND (tools.minTemp >= ? AND tools.maxTemp <= ?) AND (tools.minPressure >= ? AND tools.maxPressure <= ?)";
-    $stmt = $db->prepare($query);
-    $stmt->bind_param('iiiii', $toolId, $temperature, $temperature, $pressure, $pressure);
-    $stmt->execute();
-    $stmt->bind_result($OD, $ID, $weight);
-    while ($stmt->fetch()) {
-        $results[$index]['OD'] = $OD;
-        $results[$index]['ID'] = $ID;
-        $results[$index]['weight'] = $weight;
-        $index += 1;
-    }
-    $stmt->free_result();
-    return $results;
-}
-
-
 function checkIfToolAlreadyCutsTubular($db, $toolID, $tubularID) {
     $return = null;
     $query = "SELECT tubularID FROM cuts WHERE toolID = ? and tubularID = ?";

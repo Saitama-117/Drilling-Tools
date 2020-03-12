@@ -26,16 +26,16 @@ session_start();
             <div class="w3-container w3-gray">
                 <h2>Input Tubular Form</h2>
             </div>
-            <div class="w3-container" action="AddTool.html">
+            <div class="w3-container">
                 <p>
-                    <label class="w3-text-gray"><b>OD</b></label>
+                    <label class="w3-text-gray"><b>Outer Diameter (in.)</b></label>
                     <input class="w3-input w3-border w3-sand" type="text" id="tubularOD"></p>
                 <p>
-                    <label class="w3-text-gray"><b>ID</b></label>
+                    <label class="w3-text-gray"><b>Inner Diameter (in.)</b></label>
                     <input class="w3-input w3-border w3-sand" type="text" id="tubularID"></p>
                 <p>
                 <p>
-                    <label class="w3-text-gray"><b>Weight</b></label>
+                    <label class="w3-text-gray"><b>Weight (ppf)</b></label>
                     <input class="w3-input w3-border w3-sand" type="text" id="weight"></p>
                 <p>
                     <button class="w3-btn w3-gray" id="addTubular">Submit</button></p>
@@ -46,24 +46,24 @@ session_start();
             <div class="w3-container w3-gray">
                 <h2>Input Tool Form</h2>
             </div>
-            <div class="w3-container" action="AddTool.html">
+            <div class="w3-container">
                 <p>
-                    <label class="w3-text-gray"><b>OD</b></label>
+                    <label class="w3-text-gray"><b>Outer Diameter (in.)</b></label>
                     <input class="w3-input w3-border w3-sand" type="text" id="toolOD"></p>
                 <p>
-                    <label class="w3-text-gray"><b>Min Pressure</b></label>
+                    <label class="w3-text-gray"><b>Min Pressure (psi)</b></label>
                     <input class="w3-input w3-border w3-sand" type="text" id="minPressure"></p>
                 <p>
                 <p>
-                    <label class="w3-text-gray"><b>Max Pressure</b></label>
+                    <label class="w3-text-gray"><b>Max Pressure (psi)</b></label>
                     <input class="w3-input w3-border w3-sand" type="text" id="maxPressure"></p>
                 <p>
                 <p>
-                    <label class="w3-text-gray"><b>Min Temperature</b></label>
+                    <label class="w3-text-gray"><b>Min Temperature (&#8451)</b></label>
                     <input class="w3-input w3-border w3-sand" type="text" id="minTemp"></p>
                 <p>
                 <p>
-                    <label class="w3-text-gray"><b>Max Temperature</b></label>
+                    <label class="w3-text-gray"><b>Max Temperature (&#8451)</b></label>
                     <input class="w3-input w3-border w3-sand" type="text" id="maxTemp"></p>
                 <p>
                     <button class="w3-btn w3-gray" id="addTool">Submit</button></p>
@@ -99,7 +99,7 @@ session_start();
                 <input class="w3-check" type="checkbox" name="tubulars">
                 <label>TOOL3</p>
         </div>
-        <button class="w3-btn w3-gray" id="linkToolTubular">Link</button></p>
+        <p><button class="w3-btn w3-gray" id="linkToolTubular">Link</button></p>
     </section>
 </main>
 <!FOOTER BEGIN>
