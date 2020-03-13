@@ -1,5 +1,6 @@
 <?php
 session_start();
+include("Includes/Utilities/LoginCheck.php");
 ?>
 
 <!DOCTYPE html>
