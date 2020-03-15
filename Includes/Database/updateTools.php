@@ -53,6 +53,7 @@ function readAllTools($db) {
     $stmt->free_result();
     return $results;
 }
+
 function updatingTool ($db, $OD, $minTemp, $maxTemp, $minPressure, $maxPressure) {
     $query = "UPDATE tools (OD, minTemp, maxTemp, minPressure, maxPressure) SET (?, ?, ?, ?, ?)";
     $stmt = $db->prepare($query);
