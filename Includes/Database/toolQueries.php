@@ -75,6 +75,16 @@ function insertTool($db, $OD, $minTemp, $maxTemp, $minPressure, $maxPressure) {
     return ($stmt->affected_rows > 0);
 }
 
+function updateTool($db, $toolId, $OD, $minTemp, $maxTemp, $minPressure, $maxPressure){
+    $query = "UPDATE tools SET OD = ?, minTemp = ?, maxTemp = ?, minPressure = ?, maxPressure = ? 
+                where toolID = ?";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param('iiiiii', $OD, $minTemp, $maxTemp, $minPressure, $maxPressure, $toolId);
+    $stmt->execute();
+    return($stmt->affected_rows > 0);
+}
+
+
 function getToolsFromTubularIdTemperatureAndPressure($db, $tubularId, $temperature, $pressure, $restriction){
     $OD = null;
     $minTemp = null;

@@ -69,3 +69,11 @@ function insertTubular($db, $OD, $ID, $weight) {
     $stmt->execute();
     return ($stmt->affected_rows > 0);
 }
+
+function updateTubular($db, $OD, $ID, $weight, $tubularId) {
+    $query = "UPDATE tubulars SET OD = ?, ID = ?, weight = ? WHERE tubularID = ?";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param('dddd', $OD, $ID, $weight, $tubularId);
+    $stmt->execute();
+    return ($stmt->affected_rows > 0);
+}
