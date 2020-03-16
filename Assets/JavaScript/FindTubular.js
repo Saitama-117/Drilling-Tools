@@ -33,7 +33,7 @@ function searchTooltoDatabase()
                 "restriction":restriction};
 
 //send Ajax request
-    $.post(url, data, function(result)
+    $.getJSON(url, data, function(result)
         {
             $("#TOOLS").empty();            //remove all children first
 

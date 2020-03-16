@@ -1,7 +1,7 @@
 <?php
 
-$dataset = IsSet($_POST) && IsSet($_POST["tubularID"]) && IsSet($_POST["temperature"]);
-$dataset = $dataset && IsSet($_POST["pressure"]) && IsSet($_POST["restriction"]);
+$dataset = IsSet($_GET) && IsSet($_GET["tubularID"]) && IsSet($_GET["temperature"]);
+$dataset = $dataset && IsSet($_GET["pressure"]) && IsSet($_GET["restriction"]);
 
 if ($dataset) {
     // Open database connection and get includes
@@ -10,10 +10,10 @@ if ($dataset) {
 
     //createToolTubularLinkIfNeeded($db);    // DEVELOPMENT ONLY
 
-    $tubularID = trim($_POST["tubularID"]);
-    $temperature = trim($_POST["temperature"]);
-    $pressure = trim($_POST["pressure"]);
-    $restriction = trim($_POST["restriction"]);
+    $tubularID = trim($_GET["tubularID"]);
+    $temperature = trim($_GET["temperature"]);
+    $pressure = trim($_GET["pressure"]);
+    $restriction = trim($_GET["restriction"]);
 
     $areNumeric = is_numeric($pressure) && is_numeric($temperature) && is_numeric($restriction);
     http_response_code(200);
