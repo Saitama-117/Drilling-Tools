@@ -96,7 +96,7 @@ include("Includes/Utilities/LoginCheck.php");
         </div>
         <!--    Tool/Tubular-->
         <div class="w3-container w3-gray">
-            <h2>Tool/Tubular Link</h2>
+            <h2>Create Tool/Tubular Link(s)</h2>
         </div>
         <!--  LIST BEGINS-->
         <div class="w3-container w3-card-4" ID="TOOL" >
@@ -127,7 +127,7 @@ include("Includes/Utilities/LoginCheck.php");
         <p><button class="w3-btn w3-gray" id="link-tool-tubular">Link</button></p>
         <!-- This gives the list of available cuts in the database -->
         <div class="w3-container w3-gray">
-            <h2>Available Cuts</h2>
+            <h2>Stored Tool/Tubular Link(s)</h2>
         </div>
         <div class="w3-container w3-card-4">
             <p>

@@ -33,7 +33,7 @@ if (IsSet($_POST) && IsSet($_POST["toolOD"]) && IsSet($_POST["minPressure"])
     if ($validData && $notInDatabase) {
         updateTool($db, $toolID, $toolOD, $minTemp, $maxTemp, $minPressure, $maxPressure);
         deleteCutsByToolId($db, $toolID);
-        $message = "Tool Modified";
+        $message = "Tool Modified - Please Recreate Tool/Tubular Link(s) Below ";
     } else {
         if (!$validData) $message = "Error in Tool Data";
         if (!$notInDatabase) $message = "Tool Already in Database";

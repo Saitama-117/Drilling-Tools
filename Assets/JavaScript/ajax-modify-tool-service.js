@@ -57,7 +57,7 @@ function populateAvailableLinks() {
             for(var index in availableLinks){
                 var link = availableLinks[index];
                 htmlCode += "<tr>";
-                htmlCode += "<td>OD: "+link["OD"]+" in, Min Temp: "+link["minTemp"]+" &#8451, Max Temp: "+link["maxTemp"]+" &#8451, ";
+                htmlCode += "<td>OD: "+link["toolOD"]+" in, Min Temp: "+link["minTemp"]+" &#8451, Max Temp: "+link["maxTemp"]+" &#8451, ";
                 htmlCode += " Min Pressure: "+link["minPressure"]+" psi, Max Pressure: "+link["maxPressure"]+"psi</td>";
                 htmlCode += "<td>OD: "+link["OD"]+" in, ID: "+link["ID"]+" in, Weight: "+link["weight"]+" ppf</td>";
                 htmlCode += "</tr>";
