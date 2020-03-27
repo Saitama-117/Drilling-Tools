@@ -77,3 +77,11 @@ function updateTubular($db, $OD, $ID, $weight, $tubularId) {
     $stmt->execute();
     return ($stmt->affected_rows > 0);
 }
+
+function deleteTubular($db, $tubularId){
+    $query = "DELETE FROM tubulars WHERE tubularID = ?";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param('i', $tubularId);
+    $stmt->execute();
+    return ($stmt->affected_rows > 0);
+}

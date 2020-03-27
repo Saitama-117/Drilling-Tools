@@ -112,3 +112,11 @@ function getToolsFromTubularIdTemperatureAndPressure($db, $tubularId, $temperatu
     $stmt->free_result();
     return $results;
 }
+
+function deleteTools($db, $toolId){
+    $query = "DELETE FROM tools WHERE toolID = ?";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param('i', $toolId);
+    $stmt->execute();
+    return ($stmt->affected_rows > 0);
+}
