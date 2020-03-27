@@ -105,3 +105,11 @@ function deleteCutsByTubularId($db, $tubularID){
     $stmt->execute();
     return ($stmt->affected_rows > 0);
 }
+
+function deleteCutsByTubularIdAndToolId($db, $toolId, $tubularID){
+    $query = "DELETE FROM cuts WHERE toolID = ? AND tubularID = ?";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param('ii', $toolId, $tubularID);
+    $stmt->execute();
+    return ($stmt->affected_rows > 0);
+}
