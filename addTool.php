@@ -21,7 +21,7 @@ include("Includes/Utilities/LoginCheck.php");
 <main>
     <!Sections BEGINS>
     <section id="AddTool" class="section">
-        <h2>Add New Tool</h2>
+        <h2>Add Tool/Tubular Data</h2>
         <!--    Adding Tubular Tool-->
         <div class="w3-card-4">
             <div class="w3-container w3-gray">

@@ -14,12 +14,6 @@ $(function() {
             }
         );
 
-        // Set up the click handler of the delete link button
-        $("#delete-link-tool-tubular").click(function () {
-                deleteCutToDatabase();
-            }
-        );
-
         // Setup onchange handler for populating selected tool data
         $("#tool-list").change(function() {
             populateToolData();
@@ -214,28 +208,6 @@ function clearToolData() {
     $("#tool-id").val("0");
     $("#tool-list").val("0");
 }
-
-/*
- *Function to handle delete tool/tubular link button
- */
-function deleteCutToDatabase() {
-    // Get tool ID
-    var toolID = $("#linked-tool-id").val();
-
-    // Get tubular IDs
-    var tubulars =  $("#linked-tubular-id").val();
-
-    var url="./Assets/AjaxServices/delete-cuts.php";
-    var data={  "toolID":toolID,
-        "tubularID":tubulars
-    };
-
-    $.post(url, data, function(result){
-        alert(JSON.parse(result).message);
-        populateAvailableLinks();
-    });
-}
-
 
 /*
 Function to populate tubular dropdown

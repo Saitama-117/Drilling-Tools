@@ -21,7 +21,7 @@ include("Includes/Utilities/LoginCheck.php");
 <main>
     <!Sections BEGINS>
     <section id="delete-section" class="section">
-        <h2>Delete Tool</h2>
+        <h2>Delete Tool/Tubular Data</h2>
         <!--    Updating Tubular Tool-->
         <div class="w3-card-4">
             <div class="w3-container w3-gray">
