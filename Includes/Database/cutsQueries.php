@@ -36,6 +36,8 @@ function readTubularsToolCuts($db, $toolID) {
 }
 
 function readAllCuts($db){
+    $toolID = null;
+    $tubularID = null;
     $toolOD = null;
     $minTemp = null;
     $minPressure = null;
@@ -48,13 +50,15 @@ function readAllCuts($db){
     $index = 0;
 
     // Read data
-    $query = "SELECT tools.OD AS 'toolOD', tools.minTemp, tools.maxTemp, tools.minPressure,
+    $query = "SELECT cuts.toolID, cuts.tubularID, tools.OD AS 'toolOD', tools.minTemp, tools.maxTemp, tools.minPressure,
                 tools.maxPressure, tubulars.OD, tubulars.ID, tubulars.weight FROM tools, tubulars, cuts 
                 WHERE cuts.tubularID = tubulars.tubularID AND cuts.toolID = tools.toolID";
     $stmt = $db->prepare($query);
     $stmt->execute();
-    $stmt->bind_result($toolOD, $minTemp, $maxTemp, $minPressure, $maxPressure, $OD, $ID, $weight);
+    $stmt->bind_result($toolID, $tubularID, $toolOD, $minTemp, $maxTemp, $minPressure, $maxPressure, $OD, $ID, $weight);
     while ($stmt->fetch()) {
+        $results[$index]['toolID'] = $toolID;
+        $results[$index]['tubularID'] = $tubularID;
         $results[$index]['toolOD'] = $toolOD;
         $results[$index]['minTemp'] = $minTemp;
         $results[$index]['maxTemp'] = $maxTemp;

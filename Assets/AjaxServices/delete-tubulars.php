@@ -6,6 +6,7 @@ if($data){
     // Open database connection and get includes
     require_once "../../Includes/Database/db_connect.php";
     include "../../Includes/Database/tubularQueries.php";
+    include "../../Includes/Database/cutsQueries.php";
 
     $tubularId = trim($_POST["tubularID"]);
 
@@ -14,6 +15,7 @@ if($data){
     $message = "";
 
     if($isNumeric && !$notInDatabase){
+        deleteCutsByTubularId($db, $tubularId);
         deleteTubular($db, $tubularId);
         $message = "Deleted Successfully";
         http_response_code(200);

@@ -9,7 +9,12 @@ if (isset($_SESSION['user'])) {
 <div class="container">
     <header id="mast">
         <div>
-            <nav id="nav">
+            <?php if($user != null){
+                echo "<nav id='nav' style='height:75px;'>";
+            } else{
+                echo "<nav id='nav'>";
+            }
+            ?>
                 <ul>
                     <li><a href="index.php" class="active">Home</a> </li>
                     <li><a href="about.php">About</a></li>
@@ -18,6 +23,7 @@ if (isset($_SESSION['user'])) {
                     <?php if ($user != null) {
                         echo "<li><a href=\"addTool.php\">Add Tool/Tubular Data</a></li>";
                         echo "<li><a href='modify-tools.php'>Modify Tool/Tubular Data</a></li>";
+                        echo "<li><a href='delete-tools.php'>Delete Tool/Tubular Data</a></li>";
                         echo "<li><a href=\"logout.php\">Logged in as: " . $user . " (Logout)</a></li>";
                     }  else {
                         echo "<li><a href=\"login.php\">Log in</a> </li>";

@@ -6,6 +6,7 @@ if($data){
     // Open database connection and get includes
     require_once "../../Includes/Database/db_connect.php";
     include "../../Includes/Database/toolQueries.php";
+    include "../../Includes/Database/cutsQueries.php";
 
     $toolId = trim($_POST["toolID"]);
 
@@ -15,6 +16,7 @@ if($data){
     $message = "";
 
     if($isNumeric && !$notInDatabase){
+        deleteCutsByToolId($db,$toolId);
         deleteTools($db, $toolId);
         $message = "Deleted Successfully";
         http_response_code(200);

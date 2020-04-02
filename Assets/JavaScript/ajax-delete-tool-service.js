@@ -30,12 +30,41 @@ $(function() {
             populateTubularData();
         });
 
+        // Setup on click for deleting cuts
+        // used delegated format due to dynamic buttons
+        $(document).on("click", ".delete-buttons", function (event) {
+            deleteCuts(event);
+        });
+
         //populate lists after the page is loaded
+        populateAvailableLinks();
         populateTubularList();
         populateToolList();
-        populateAvailableLinks();
+
     }
 );
+
+/*
+ *Function to handle delete tubular button
+ */
+function deleteCuts(event) {
+    var tubularID = event.target.getAttribute("data-tubular-id");
+    var toolID = event.target.getAttribute("data-tool-id");
+
+    var url="./Assets/AjaxServices/delete-cuts.php";
+    var data={
+        "toolID" : toolID,
+        "tubularID" : tubularID
+    };
+
+    $.post(url, data, function(result){
+        var value = JSON.parse(result);
+        alert(value.message);
+        populateAvailableLinks();
+    });
+
+}
+
 
 /*
     Function to populate the available cuts
@@ -46,6 +75,7 @@ function populateAvailableLinks() {
     var htmlCode = "<tr>";
     htmlCode += "<th>Tools</th>";
     htmlCode += "<th>Tubulars</th>";
+    htmlCode += "<th>Action</th>"
     htmlCode += "</tr>";
 
     $.get(url, data, function (result) {
@@ -59,6 +89,8 @@ function populateAvailableLinks() {
                 htmlCode += "<td>OD: "+link["toolOD"]+" in, Min Temp: "+link["minTemp"]+" &#8451, Max Temp: "+link["maxTemp"]+" &#8451, ";
                 htmlCode += " Min Pressure: "+link["minPressure"]+" psi, Max Pressure: "+link["maxPressure"]+"psi</td>";
                 htmlCode += "<td>OD: "+link["OD"]+" in, ID: "+link["ID"]+" in, Weight: "+link["weight"]+" ppf</td>";
+                htmlCode += "<td><button class='w3-btn w3-red delete-buttons' data-tool-id='"+ link["toolID"] +"' ";
+                htmlCode += "data-tubular-id='"+ link["tubularID"] +"'>Delete</button></td>";
                 htmlCode += "</tr>";
             }
             $("#available-links").append(htmlCode);
@@ -122,8 +154,8 @@ function deleteTubularInDatabase() {
         };
 
         $.post(url, data, function(result){
-            alert(result.message);
-            populateTubularCheckBoxList();
+            alert(JSON.parse(result).message);
+            populateTubularList();
             populateAvailableLinks();
             clearTubularData();
         });
@@ -147,9 +179,9 @@ function deleteToolToDatabase() {
         };
 
         $.post(url, data, function(result){
-            console.log(result);
-            alert(result.message);
-            populateToolRadioList();
+
+            alert(JSON.parse(result).message);
+            populateToolList();
             populateAvailableLinks();
             clearToolData();
         });
@@ -199,7 +231,7 @@ function deleteCutToDatabase() {
     };
 
     $.post(url, data, function(result){
-        alert(result.message);
+        alert(JSON.parse(result).message);
         populateAvailableLinks();
     });
 }
