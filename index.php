@@ -6,7 +6,7 @@ session_start();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Tools</title>
+    <title>Specialist Cutting Tools</title>
     <link rel="stylesheet" href="./Assets/CSS/Style.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
@@ -20,7 +20,7 @@ session_start();
 <main>
     <!Sections BEGINS>
     <section id="findtool" class="section">
-        <h2>CUTTING TOOL SELECTION</h2>
+        <h2>Cutting Tool Selection</h2>
         <div id="Targetbox">
             <!-- <form action="Assets/AjaxServices/read-cuts.php" method="post"> -->
 
