@@ -95,6 +95,10 @@ session_start();
         </div>
     </section>
 </main>
+    <!-- hitwebcounter Code START -->
+<a  target="_blank">
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7214524&style=0006&nbdigits=3&type=page&initCount=0" title="User Stats" Alt="PHP Hits Count"   border="0" >
+    </a> 
 <!FOOTER BEGIN>
 <?php include("Includes/PageComponents/footer.php"); ?>
 </body>
