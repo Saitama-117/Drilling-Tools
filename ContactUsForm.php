@@ -36,7 +36,6 @@ session_start();
         <label for="subject">Tell us</label>
         <textarea id="subject" name="subject" placeholder="How can we help?" style="height:200px"></textarea>
 
-
       </form>
       <button id="send" class="button" >Send</button>
     </div>
@@ -44,3 +43,4 @@ session_start();
 <!FOOTER BEGIN>
 <?php include("Includes/PageComponents/footer.php"); ?>
 </body>
+</html>

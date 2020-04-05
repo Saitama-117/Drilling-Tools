@@ -4,11 +4,16 @@ $(function()
         //set up the click handler of the send button.
         $("#send").click(function()
             {
-                var message = validForm();
-                if (message === "") {
-                    alert("Email Sent - We Will Be In Touch");
+                var firstname =$("#fname").val();
+                var lastname =$("#lname").val();
+                var email =$("#email").val();
+                var subject =$("#subject").val();
+
+                var feedback = validForm(firstname, lastname, email, subject);
+                if (feedback === "") {
+                    sendEmail(firstname, lastname, email, subject);
                 } else {
-                    alert(message);
+                    alert(feedback);
                 }
             }
         );
@@ -16,11 +21,7 @@ $(function()
     }
 );
 
-function validForm() {
-    var firstname =$("#fname").val();
-    var lastname =$("#lname").val();
-    var email =$("#email").val();
-    var subject =$("#subject").val();
+function validForm(firstname, lastname, email, subject) {
     var message = "";
 
     if (firstname === "") message += "Please enter a first name \n\n";
@@ -29,4 +30,17 @@ function validForm() {
     if (subject === "") message += "Please Enter a message text";
 
     return message;
+}
+
+function sendEmail(firstname, lastname, email, subject) {
+    var url="./Assets/AjaxServices/mailService.php";
+    var data={  "firstname":firstname,
+                "lastname":lastname,
+                "email":email,
+                "subject":subject
+    };
+
+    $.post(url, data, function(result){
+        alert(result.message);
+    });
 }
