@@ -28,6 +28,21 @@ function createToolTableIfNeeded($db)
     $result = $db->query($query);
 }
 
+function alterToolTableIfNeeded($db) {
+
+    $answer = "";
+    $query = "SELECT IF(
+                    (SELECT COUNT(*) FROM information_schema.columns 
+                    WHERE table_name = 'tools' AND table_schema = 'db1813014_database' AND column_name = 'CADurl') > 0,
+              '',
+              'ALTER TABLE tools ADD CADurl NVARCHAR(200);')";
+    $result = $db->query($query);
+    $answer = implode($result->fetch_assoc());
+    if ($answer !== '') {
+        $result = $db->query($answer);
+    }
+}
+
 function createTubularTableIfNeeded($db)
 {
     $query = "CREATE TABLE IF NOT EXISTS tubulars (
@@ -54,6 +69,7 @@ function createToolTubularLinkIfNeeded($db)
 // ***************************************
 createAdminsTableIfNeeded($db);
 createToolTableIfNeeded($db);
+alterToolTableIfNeeded($db);
 createTubularTableIfNeeded($db);
 createToolTubularLinkIfNeeded($db);
 
