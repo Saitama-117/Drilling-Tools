@@ -87,7 +87,8 @@ function populateToolData() {
         $("#maxPressure").val(toolData.maxPressure);
         $("#minTemp").val(toolData.minTemp);
         $("#maxTemp").val(toolData.maxTemp);
-
+        $("#CADurl").val(toolData.CADurl);
+        
     });
 }
 
@@ -153,15 +154,17 @@ function modifyToolToDatabase()
     var minTemp=$("#minTemp").val();
     var maxTemp=$("#maxTemp").val();
     var toolId = $("#tool-id").val();
+    var CADurl = $("#CADurl").val();
 
     if(toolOD != ''){
         var url="./Assets/AjaxServices/update-tools.php";
-        var data={  "toolOD":toolOD,
+        var data={"toolOD":toolOD,
             "minPressure":minPressure,
             "maxPressure":maxPressure,
             "minTemp":minTemp,
             "maxTemp":maxTemp,
-            "toolID" : toolId
+            "toolID" : toolId,
+            "CADurl" :CADurl
         };
 
         $.post(url, data, function(result){
@@ -199,6 +202,7 @@ function clearToolData() {
     $("#maxTemp").val("");
     $("#tool-id").val("0");
     $("#tool-list").val("0");
+    $("#CADurl").val("");
 }
 
 /*

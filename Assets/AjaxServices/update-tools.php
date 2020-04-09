@@ -1,18 +1,13 @@
 <?php
-function validToolData($toolOD, $minPressure, $maxPressure, $minTemp, $maxTemp) {
-    $areNumeric = is_numeric($toolOD) && is_numeric($minPressure) && is_numeric($maxPressure);
-    $areNumeric = $areNumeric && is_numeric($minTemp) && is_numeric($maxTemp);
-    $isPhysical = ($maxPressure > $minPressure) && ($maxTemp > $minTemp);
-    return  $areNumeric && $isPhysical;
-}
 
-if (IsSet($_POST) && IsSet($_POST["toolOD"]) && IsSet($_POST["minPressure"])
+if (IsSet($_POST) && IsSet($_POST["toolOD"]) && IsSet($_POST["minPressure"]) && IsSet($_POST["CADurl"])
     && IsSet($_POST["maxPressure"]) && IsSet($_POST["minTemp"]) && IsSet($_POST["maxTemp"])
         && IsSet($_POST["toolID"])) {
     // Open database connection and get includes
     require_once "../../Includes/Database/db_connect.php";
     include "../../Includes/Database/toolQueries.php";
     include "../../Includes/Database/cutsQueries.php";
+    include "../../Includes/Utilities/validate-tool-data.php";
 
     // POST request and user has entered data in both form fields
     $toolID = trim($_POST["toolID"]);
@@ -21,14 +16,15 @@ if (IsSet($_POST) && IsSet($_POST["toolOD"]) && IsSet($_POST["minPressure"])
     $maxPressure = trim($_POST['maxPressure']);
     $minTemp = trim($_POST['minTemp']);
     $maxTemp = trim($_POST['maxTemp']);
+    $CADurl = trim($_POST['CADurl']);
 
     header("Content-type: application/json");
     $message = "";
-    $validData = validToolData($toolOD, $minPressure, $maxPressure, $minTemp, $maxTemp);
-    $notInDatabase = empty(checkIfToolExists($db, $toolOD, $minTemp, $maxTemp, $minPressure, $maxPressure));
+    $validData = validToolData($toolOD, $minPressure, $maxPressure, $minTemp, $maxTemp, $CADurl);
+    $notInDatabase = empty(checkIfToolExists($db, $toolOD, $minTemp, $maxTemp, $minPressure, $maxPressure, $CADurl));
 
     if ($validData && $notInDatabase) {
-        updateTool($db, $toolID, $toolOD, $minTemp, $maxTemp, $minPressure, $maxPressure);
+        updateTool($db, $toolID, $toolOD, $minTemp, $maxTemp, $minPressure, $maxPressure, $CADurl);
         deleteCutsByToolId($db, $toolID);
         $message = "Tool Modified - Please Recreate Tool/Tubular Link(s) Below ";
     } else {

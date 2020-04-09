@@ -90,6 +90,10 @@ include("Includes/Utilities/LoginCheck.php");
                     <input class="w3-input w3-border w3-sand" type="text" id="maxTemp">
                 </p>
                 <p>
+                    <label class="w3-text-gray"><b>CAD Model URL (optional)</b></label>
+                    <input class="w3-input w3-border w3-sand" type="text" id="CADurl"></p>
+                <p>
+                <p>
                     <button class="w3-btn w3-gray" id="update-tool">Submit</button>
                 </p>
             </div>

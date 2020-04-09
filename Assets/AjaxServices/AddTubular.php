@@ -1,15 +1,10 @@
 <?php
 
-function validTubularData($tubularOD, $tubularID, $weight) {
-    $areNumeric = is_numeric($tubularOD) && is_numeric($tubularID) && is_numeric($weight);
-    $isPhysical = ($tubularOD > $tubularID);
-    return  $areNumeric && $isPhysical;
-}
-
 if (IsSet($_POST) && IsSet($_POST["tubularOD"]) && IsSet($_POST["tubularID"]) && IsSet($_POST["weight"])) {
         // Open database connection and get includes
         require_once "../../Includes/Database/db_connect.php";
         include "../../Includes/Database/tubularQueries.php";
+        include "../../Includes/Utilities/validate-tubular-data.php";
 
         // POST request and user has entered data in both form fields
         $tubularOD = trim($_POST['tubularOD']);

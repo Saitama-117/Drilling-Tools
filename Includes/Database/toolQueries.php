@@ -2,12 +2,12 @@
 
 function readToolData($db, $toolID) {
     $result = array();
-    $query = "SELECT OD, minTemp, maxTemp, minPressure, maxPressure FROM tools WHERE toolID = ?";
+    $query = "SELECT OD, minTemp, maxTemp, minPressure, maxPressure, CADurl FROM tools WHERE toolID = ?";
     $stmt = $db->prepare($query);
     $stmt->bind_param('i', $toolID);
     $stmt->execute();
     $stmt->store_result();
-    $stmt->bind_result($result['OD'], $result['minTemp'], $result['maxTemp'], $result['minPressure'], $result['maxPressure']);
+    $stmt->bind_result($result['OD'], $result['minTemp'], $result['maxTemp'], $result['minPressure'], $result['maxPressure'], $result['CADurl']);
     $stmt->fetch();
     $stmt->free_result();
     return $result;
@@ -42,11 +42,11 @@ function readAllTools($db) {
     return $results;
 }
 
-function checkIfToolExists($db, $OD, $minTemp, $maxTemp, $minPressure, $maxPressure) {
+function checkIfToolExists($db, $OD, $minTemp, $maxTemp, $minPressure, $maxPressure, $CADurl) {
     $return = null;
-    $query = "SELECT toolID FROM tools WHERE OD = ? and minTemp = ? and maxTemp = ? and minPressure = ? and maxPressure = ?";
+    $query = "SELECT toolID FROM tools WHERE OD = ? and minTemp = ? and maxTemp = ? and minPressure = ? and maxPressure = ? and CADurl = ?";
     $stmt = $db->prepare($query);
-    $stmt->bind_param('ddddd', $OD, $minTemp, $maxTemp, $minPressure, $maxPressure);
+    $stmt->bind_param('ddddds', $OD, $minTemp, $maxTemp, $minPressure, $maxPressure, $CADurl);
     $stmt->execute();
     $stmt->store_result();
     $stmt->bind_result($return);
@@ -71,11 +71,20 @@ function insertTool($db, $OD, $minTemp, $maxTemp, $minPressure, $maxPressure, $C
     return ($stmt->affected_rows > 0);
 }
 
-function updateTool($db, $toolId, $OD, $minTemp, $maxTemp, $minPressure, $maxPressure){
-    $query = "UPDATE tools SET OD = ?, minTemp = ?, maxTemp = ?, minPressure = ?, maxPressure = ? 
+function updateTool($db, $toolId, $OD, $minTemp, $maxTemp, $minPressure, $maxPressure, $CADurl){
+
+    if ($CADurl !== '') {
+        $query = "UPDATE tools SET OD = ?, minTemp = ?, maxTemp = ?, minPressure = ?, maxPressure = ?, CADurl = ? 
                 where toolID = ?";
-    $stmt = $db->prepare($query);
-    $stmt->bind_param('diiiii', $OD, $minTemp, $maxTemp, $minPressure, $maxPressure, $toolId);
+        $stmt = $db->prepare($query);
+        $stmt->bind_param('diiiisi', $OD, $minTemp, $maxTemp, $minPressure, $maxPressure, $CADurl, $toolId);
+    } else {
+        $query = "UPDATE tools SET OD = ?, minTemp = ?, maxTemp = ?, minPressure = ?, maxPressure = ?, CADurl = NULL 
+                where toolID = ?";
+        $stmt = $db->prepare($query);
+        $stmt->bind_param('diiiii', $OD, $minTemp, $maxTemp, $minPressure, $maxPressure, $toolId);
+    }
+
     $stmt->execute();
     return($stmt->affected_rows > 0);
 }
