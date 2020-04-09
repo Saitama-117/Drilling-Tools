@@ -95,23 +95,25 @@ function getToolsFromTubularIdTemperatureAndPressure($db, $tubularId, $temperatu
     $maxTemp = null;
     $minPressure = null;
     $maxPressure = null;
+    $CADurl = null;
     $results = array();
     $index = 0;
 
-    $query = "SELECT tools.OD, tools.minTemp, tools.maxTemp, tools.minPressure, tools.maxPressure FROM tubulars, cuts, tools 
+    $query = "SELECT tools.OD, tools.minTemp, tools.maxTemp, tools.minPressure, tools.maxPressure, tools.CADurl FROM tubulars, cuts, tools 
         WHERE cuts.tubularID = tubulars.tubularID AND tools.toolID = cuts.toolID AND cuts.tubularID = ?
         AND (tools.minTemp <= ? AND tools.maxTemp >= ?) AND (tools.minPressure <= ? AND tools.maxPressure >= ?)
         AND tools.OD < ?";
     $stmt = $db->prepare($query);
     $stmt->bind_param('iiiiii', $tubularId, $temperature, $temperature, $pressure, $pressure, $restriction);
     $stmt->execute();
-    $stmt->bind_result($OD, $minTemp, $maxTemp, $minPressure, $maxPressure);
+    $stmt->bind_result($OD, $minTemp, $maxTemp, $minPressure, $maxPressure, $CADurl);
     while ($stmt->fetch()) {
         $results[$index]['OD'] = $OD;
         $results[$index]['minTemp'] = $minTemp;
         $results[$index]['maxTemp'] = $maxTemp;
         $results[$index]['minPressure'] = $minPressure;
         $results[$index]['maxPressure'] = $maxPressure;
+        $results[$index]['CADurl'] = $CADurl;
         $index += 1;
     }
     $stmt->free_result();

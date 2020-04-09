@@ -23,7 +23,7 @@ if ($dataset) {
         header("Content-type: application/json");
         foreach ($tools as $tool)       //iterate through rows in result
         {
-            $toReturn[]=$tool;       //append to PHP array
+            $toReturn[]=$tool;          //append to PHP array
         }
         echo json_encode(['message' => "Validation Passed", 'tools' => $toReturn]);
         //echo json_encode($toReturn);
