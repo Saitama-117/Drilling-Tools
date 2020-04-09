@@ -55,10 +55,18 @@ function checkIfToolExists($db, $OD, $minTemp, $maxTemp, $minPressure, $maxPress
     return $return;
 }
 
-function insertTool($db, $OD, $minTemp, $maxTemp, $minPressure, $maxPressure) {
-    $query = "INSERT INTO tools (OD, minTemp, maxTemp, minPressure, maxPressure) VALUES (?, ?, ?, ?, ?)";
-    $stmt = $db->prepare($query);
-    $stmt->bind_param('ddddd', $OD, $minTemp, $maxTemp, $minPressure, $maxPressure);
+function insertTool($db, $OD, $minTemp, $maxTemp, $minPressure, $maxPressure, $CADurl) {
+
+    if ($CADurl !== '') {
+        $query = "INSERT INTO tools (OD, minTemp, maxTemp, minPressure, maxPressure, CADurl) VALUES (?, ?, ?, ?, ?, ?)";
+        $stmt = $db->prepare($query);
+        $stmt->bind_param('ddddds', $OD, $minTemp, $maxTemp, $minPressure, $maxPressure, $CADurl);
+    } else {
+        $query = "INSERT INTO tools (OD, minTemp, maxTemp, minPressure, maxPressure, CADurl) VALUES (?, ?, ?, ?, ?, NULL)";
+        $stmt = $db->prepare($query);
+        $stmt->bind_param('ddddd', $OD, $minTemp, $maxTemp, $minPressure, $maxPressure);
+    }
+
     $stmt->execute();
     return ($stmt->affected_rows > 0);
 }

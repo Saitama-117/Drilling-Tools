@@ -58,13 +58,15 @@ function addToolToDatabase()
     var maxPressure=$("#maxPressure").val();
     var minTemp=$("#minTemp").val();
     var maxTemp=$("#maxTemp").val();
+    var CADurl=$("#CADurl").val();
 
     var url="./Assets/AjaxServices/AddTool.php";
     var data={  "toolOD":toolOD,
                 "minPressure":minPressure,
                 "maxPressure":maxPressure,
                 "minTemp":minTemp,
-                "maxTemp":maxTemp
+                "maxTemp":maxTemp,
+                "CADurl" :CADurl
     };
 
     $.post(url, data, function(result){

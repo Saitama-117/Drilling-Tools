@@ -67,6 +67,10 @@ include("Includes/Utilities/LoginCheck.php");
                     <label class="w3-text-gray"><b>Max Temperature (&#8451)</b></label>
                     <input class="w3-input w3-border w3-sand" type="text" id="maxTemp"></p>
                 <p>
+                <p>
+                    <label class="w3-text-gray"><b>CAD Model URL (optional)</b></label>
+                    <input class="w3-input w3-border w3-sand" type="text" id="CADurl"></p>
+                <p>
                     <button class="w3-btn w3-gray" id="addTool">Submit</button></p>
             </div>
         </div>
