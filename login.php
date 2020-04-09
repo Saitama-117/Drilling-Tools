@@ -4,7 +4,7 @@ session_start();
 // Includes
 require_once "./Includes/Database/db_connect.php";
 include "./Includes/Database/userQueries.php";
-include "./Includes/Utilities/AdminSetup.php";  // DEVELOPMENT ONLY
+include "./Includes/Database/table-setup.php";      // DEVELOPMENT ONLY
 
 $userFeedback = null;
 

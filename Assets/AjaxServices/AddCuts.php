@@ -5,9 +5,6 @@ if (IsSet($_POST) && IsSet($_POST["toolID"]) && IsSet($_POST["tubulars"])) {
     require_once "../../Includes/Database/db_connect.php";
     include "../../Includes/Database/cutsQueries.php";
 
-    // DEVELOPMENT ONLY
-    createToolTubularLinkIfNeeded($db);
-
     // POST request and user has entered data in both form fields
     $toolID = $_POST['toolID'];
     $tubulars = array();

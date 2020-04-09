@@ -5,7 +5,6 @@ if ($_SERVER["REQUEST_METHOD"]=="GET") {
     require_once "../../Includes/Database/db_connect.php";
     include "../../Includes/Database/toolQueries.php";
 
-    createToolTableIfNeeded($db);    // DEVELOPMENT ONLY
     $tools = readAllTools($db);
 
     header("Content-type: application/json");

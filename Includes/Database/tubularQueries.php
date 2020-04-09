@@ -1,16 +1,5 @@
 <?php
 
-function createTubularTableIfNeeded($db)
-{
-    $query = "CREATE TABLE IF NOT EXISTS tubulars (
-                              tubularID int NOT NULL AUTO_INCREMENT,
-                              OD float NOT NULL,
-                              ID float NOT NULL,
-                              weight float NOT NULL,
-                              PRIMARY KEY(tubularID))";
-    $result = $db->query($query);
-}
-
 function readTubularData($db, $tubularID) {
     $result = array();
     $query = "SELECT OD, ID, weight FROM tubulars WHERE tubularID = ?";

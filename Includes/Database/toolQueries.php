@@ -1,16 +1,4 @@
 <?php
-function createToolTableIfNeeded($db)
-{
-    $query = "CREATE TABLE IF NOT EXISTS tools (
-                              toolID int NOT NULL AUTO_INCREMENT,
-                              OD float NOT NULL,
-                              minTemp float NOT NULL,
-                              maxTemp float NOT NULL,
-                              minPressure float NOT NULL,
-                              maxPressure float NOT NULL,
-                              PRIMARY KEY(toolID))";
-    $result = $db->query($query);
-}
 
 function readToolData($db, $toolID) {
     $result = array();

@@ -8,8 +8,6 @@ if ($dataset) {
     require_once "../../Includes/Database/db_connect.php";
     include "../../Includes/Database/toolQueries.php";
 
-    //createToolTubularLinkIfNeeded($db);    // DEVELOPMENT ONLY
-
     $tubularID = trim($_GET["tubularID"]);
     $temperature = trim($_GET["temperature"]);
     $pressure = trim($_GET["pressure"]);

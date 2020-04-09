@@ -12,9 +12,6 @@ if (IsSet($_POST) && IsSet($_POST["toolOD"]) && IsSet($_POST["minPressure"])
     require_once "../../Includes/Database/db_connect.php";
     include "../../Includes/Database/toolQueries.php";
 
-    // DEVELOPMENT ONLY
-    createToolTableIfNeeded($db);
-
     // POST request and user has entered data in both form fields
     $toolOD = trim($_POST['toolOD']);
     $minPressure = trim($_POST['minPressure']);

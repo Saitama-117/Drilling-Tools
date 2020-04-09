@@ -11,9 +11,6 @@ if (IsSet($_POST) && IsSet($_POST["tubularOD"]) && IsSet($_POST["tubularID"]) &&
         require_once "../../Includes/Database/db_connect.php";
         include "../../Includes/Database/tubularQueries.php";
 
-        // DEVELOPMENT ONLY
-        createTubularTableIfNeeded($db);
-
         // POST request and user has entered data in both form fields
         $tubularOD = trim($_POST['tubularOD']);
         $tubularID = trim($_POST['tubularID']);

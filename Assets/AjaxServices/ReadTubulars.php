@@ -5,7 +5,6 @@ if ($_SERVER["REQUEST_METHOD"]=="GET") {
     require_once "../../Includes/Database/db_connect.php";
     include "../../Includes/Database/tubularQueries.php";
 
-    createTubularTableIfNeeded($db);    // DEVELOPMENT ONLY
     $tubulars = readAllTubulars($db);
 
     header("Content-type: application/json");

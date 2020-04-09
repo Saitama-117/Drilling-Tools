@@ -1,13 +1,4 @@
 <?php
-    function createAdminsTableIfNeeded($db)
-    {
-        $query = "CREATE TABLE IF NOT EXISTS admins (
-                              userid int NOT NULL,
-                              username nvarchar(20),
-                              password nvarchar(256),
-                              PRIMARY KEY(userid))";
-        $result = $db->query($query);
-    }
 
     function checkUserLogin($db, $username, $password) {
         $return = null;

@@ -26,7 +26,7 @@ if (IsSet($_POST) && IsSet($_POST["firstname"]) && IsSet($_POST["lastname"])
     $message = "";
     if (validFormData($firstName, $lastName, $email, $subject)) {
         // Valid form data so build email message
-        $toEmail = "1813014@rgu.ac.uk";
+        $toEmail = "user@rgu.ac.uk";
         $fromEmail = "specialist-site@gmail.com";
         $emailSubject = "Specialist Cutting Tools Enquiry";
         $emailBody = "Enquiry from: " . $firstName . " " . $lastName . "\n\n";

@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+// THIS SECTION DEVELOPMENT ONLY
+require_once "./Includes/Database/db_connect.php";
+include "./Includes/Database/userQueries.php";
+include "./Includes/Database/table-setup.php";
+$db->close();
+// THIS SECTION DEVELOPMENT ONLY
 ?>
 
 <!DOCTYPE html>
@@ -93,6 +100,13 @@ session_start();
                 </p>
             </div>
         </div>
+    </section>
+    <section>
+        <iframe id='3dviewerplayer' type='text/html' width='800' height='600'
+                src='https://www.3dvieweronline.com/members/Idb8ab596fde54c47e4b01c9936389dccc/m82oszB5DtKsLmc'
+                frameborder='0' scrolling='no' allowfullscreen webkitallowfullscreen mozallowfullscreen><p>Your browser does not support iframes.</p>
+        </iframe>
+
     </section>
 </main>
     <!-- hitwebcounter Code START -->

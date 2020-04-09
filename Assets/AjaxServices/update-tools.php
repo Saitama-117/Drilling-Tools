@@ -14,9 +14,6 @@ if (IsSet($_POST) && IsSet($_POST["toolOD"]) && IsSet($_POST["minPressure"])
     include "../../Includes/Database/toolQueries.php";
     include "../../Includes/Database/cutsQueries.php";
 
-    // DEVELOPMENT ONLY
-    createToolTableIfNeeded($db);
-
     // POST request and user has entered data in both form fields
     $toolID = trim($_POST["toolID"]);
     $toolOD = trim($_POST['toolOD']);
