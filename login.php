@@ -69,7 +69,7 @@ $db->close();
 
         <div class="container" style="background-color:#f1f1f1">
             <a href="index.php"> <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button></a>
-            <span class="psw">Forgot <a href="mailto:burori.god@gmail.com">password?</a></span>
+            <span class="psw">Forgot <a href="mailto:admin@specialist.com">password?</a></span>
         </div>
     </form>
 </main>

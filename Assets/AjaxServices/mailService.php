@@ -26,8 +26,8 @@ if (IsSet($_POST) && IsSet($_POST["firstname"]) && IsSet($_POST["lastname"])
     $message = "";
     if (validFormData($firstName, $lastName, $email, $subject)) {
         // Valid form data so build email message
-        $toEmail = "user@rgu.ac.uk";
-        $fromEmail = "specialist-site@gmail.com";
+        $toEmail = "n.harle@rgu.ac.uk";
+        $fromEmail = "admin@specialist.com";
         $emailSubject = "Specialist Cutting Tools Enquiry";
         $emailBody = "Enquiry from: " . $firstName . " " . $lastName . "\n\n";
         $emailBody .= "Email Address: " . $email . "\n\n";
@@ -36,9 +36,10 @@ if (IsSet($_POST) && IsSet($_POST["firstname"]) && IsSet($_POST["lastname"])
 
         // PHP.ini file must be correctly setup
         // If using Gmail SSL/TLS must be used which requires an SSL certificate
-        // $return = mail($toEmail, $emailSubject, $emailBody, $headers);
-        $return = true;
+        $return = mail($toEmail, $emailSubject, $emailBody, $headers);
+        //$return = true;
         if ($return) {
+            //$message = $toEmail . "\n\n" . "\n\n" . $emailSubject . "\n\n" . $emailBody . "\n\n" . $headers;
             $message = "Message sent to the Specialist Cutting Tools team";
         } else {
             $message = "Message not sent - contact the site administrator";
