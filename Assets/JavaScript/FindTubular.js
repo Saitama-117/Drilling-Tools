@@ -48,8 +48,10 @@ function searchTooltoDatabase()
                         htmlCode+="OD: "+tool["OD"]+" in, Min Temp: "+tool["minTemp"]+" &#8451, Max Temp: "+tool["maxTemp"]+" &#8451, ";
                         htmlCode+="Min Pressure: "+tool["minPressure"]+" psi, Max Pressure: "+tool["maxPressure"]+"psi</p>";
                         if (tool["CADurl"]) {
-                            htmlCode+="<iframe id='3dviewerplayer' type='text/html' width='640' height='480' "; style='margin:auto';
+                            htmlCode+="<div class='iframe-container'>";
+                            htmlCode+="<iframe id='3dviewerplayer' type='text/html'";
                             htmlCode+="src='"+tool["CADurl"]+"' frameborder='0' scrolling='no' allowfullscreen webkitallowfullscreen mozallowfullscreen><p>Your browser does not support iframes.</p></iframe>";
+                            htmlCode+="</div>";
                         }
 
                         htmlCode+="<hr class='one'>"; //horizontal lines btw tools

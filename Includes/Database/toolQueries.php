@@ -104,7 +104,7 @@ function getToolsFromTubularIdTemperatureAndPressure($db, $tubularId, $temperatu
         AND (tools.minTemp <= ? AND tools.maxTemp >= ?) AND (tools.minPressure <= ? AND tools.maxPressure >= ?)
         AND tools.OD < ?";
     $stmt = $db->prepare($query);
-    $stmt->bind_param('iiiiii', $tubularId, $temperature, $temperature, $pressure, $pressure, $restriction);
+    $stmt->bind_param('iiiiid', $tubularId, $temperature, $temperature, $pressure, $pressure, $restriction);
     $stmt->execute();
     $stmt->bind_result($OD, $minTemp, $maxTemp, $minPressure, $maxPressure, $CADurl);
     while ($stmt->fetch()) {

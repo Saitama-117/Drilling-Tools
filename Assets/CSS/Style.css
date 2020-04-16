@@ -10,6 +10,18 @@ nav {
 
 }
 
+/* style for ifraam */
+.iframe-container {
+    width: 640px;
+    height: 480px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+iframe {
+    width: 640px;
+    height: 480px;
+}
 
 /*Style for HR*/
 hr.one{
