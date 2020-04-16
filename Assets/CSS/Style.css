@@ -10,6 +10,12 @@ nav {
 
 }
 
+
+/*Style for HR*/
+hr.one{
+    border: 1px solid black;
+}
+
 nav li a:hover{
     color:red;
 }
