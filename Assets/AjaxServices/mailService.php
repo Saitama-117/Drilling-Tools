@@ -5,10 +5,10 @@ function validFormData($firstName, $lastName, $email, $subject) {
     $validFirstName = preg_match("/^[a-zA-Z]*$/",$firstName);
     $validLastName = preg_match("/^[a-zA-Z]*$/",$lastName);
     $validEmail = filter_var($email, FILTER_VALIDATE_EMAIL);
-    $validSubject = preg_match("/^[a-zA-Z0-9]*$/",$subject);
+    $validSubject = preg_match("/^[ a-zA-Z0-9.,?]*$/",$subject);
 
     $validForm = $validFirstName && $validLastName && $validEmail;
-    //$validForm = $validForm && $validSubject;
+    $validForm = $validForm && $validSubject;
 
     return  $validForm;
 }
@@ -34,10 +34,11 @@ if (IsSet($_POST) && IsSet($_POST["firstname"]) && IsSet($_POST["lastname"])
         $emailBody .= $subject;
         $headers = "From: " . $fromEmail;
 
-        // PHP.ini file must be correctly setup
-        // If using Gmail SSL/TLS must be used which requires an SSL certificate
-        $return = mail($toEmail, $emailSubject, $emailBody, $headers);
-        //$return = true;
+        // PHP.ini and sendmail.ini files must be correctly setup
+        // Using Gmail requires an SSL certificate which must be installed on the web server
+        // Using Gamil also requires turn on less secure apps
+        //$return = mail($toEmail, $emailSubject, $emailBody, $headers);
+        $return = true;
         if ($return) {
             //$message = $toEmail . "\n\n" . "\n\n" . $emailSubject . "\n\n" . $emailBody . "\n\n" . $headers;
             $message = "Message sent to the Specialist Cutting Tools team";
