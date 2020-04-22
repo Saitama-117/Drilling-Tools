@@ -45,7 +45,9 @@ function readAllTools($db) {
 function checkIfToolExists($db, $OD, $minTemp, $maxTemp, $minPressure, $maxPressure, $CADurl) {
     $result = null;
     if ($CADurl !== '') {
-        $query = "SELECT toolID FROM tools WHERE OD = ? and minTemp = ? and maxTemp = ? and minPressure = ? and maxPressure = ? and CADurl = ?";
+        $query = "SELECT toolID FROM tools WHERE FORMAT(OD,3) = FORMAT(?,3) and FORMAT(minTemp,2) = FORMAT(?,2) 
+                    and FORMAT(maxTemp,2) = FORMAT(?,2) and FORMAT(minPressure,2) = FORMAT(?,2) 
+                    and FORMAT(maxPressure,2) = FORMAT(?,2) and CADurl = ?";
         $stmt = $db->prepare($query);
         $stmt->bind_param('ddddds', $OD, $minTemp, $maxTemp, $minPressure, $maxPressure, $CADurl);
     } else {

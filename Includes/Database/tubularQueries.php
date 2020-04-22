@@ -40,7 +40,7 @@ function readAllTubulars($db) {
 
 function checkIfTubularExists($db, $OD, $ID, $weight) {
     $result = null;
-    $query = "SELECT tubularID FROM tubulars WHERE FORMAT(OD,5) = FORMAT(?,5) and FORMAT(ID,5) = FORMAT(?,5) and FORMAT(weight,5) = FORMAT(?,5)";
+    $query = "SELECT tubularID FROM tubulars WHERE FORMAT(OD,3) = FORMAT(?,3) and FORMAT(ID,3) = FORMAT(?,3) and FORMAT(weight,3) = FORMAT(?,3)";
     $stmt = $db->prepare($query);
     $stmt->bind_param('ddd', $OD, $ID, $weight);
     $stmt->execute();

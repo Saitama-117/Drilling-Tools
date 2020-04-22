@@ -41,7 +41,7 @@ function readAllCuts($db){
     // Read data
     $query = "SELECT cuts.toolID, cuts.tubularID, tools.OD AS 'toolOD', tools.minTemp, tools.maxTemp, tools.minPressure,
                 tools.maxPressure, tubulars.OD, tubulars.ID, tubulars.weight FROM tools, tubulars, cuts 
-                WHERE cuts.tubularID = tubulars.tubularID AND cuts.toolID = tools.toolID";
+                WHERE cuts.tubularID = tubulars.tubularID AND cuts.toolID = tools.toolID ORDER BY tools.OD";
     $stmt = $db->prepare($query);
     $stmt->execute();
     $stmt->bind_result($toolID, $tubularID, $toolOD, $minTemp, $maxTemp, $minPressure, $maxPressure, $OD, $ID, $weight);
