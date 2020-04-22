@@ -25,10 +25,28 @@ IMPORTANT - Automatic Table Creation and Population:
 Loading index.php WHILE NOT LOGGED IN AS ADMIN will do the following:
 1) create the admins, tools, tubulars and cuts tables automatically if they do not already exist
 2) populate the above tables with representative data if that data does not already exist
-Note: The connection details in the db_connect.php file will have to be updated to match the host MySQL installation.
+
+Note:   1) Update database connection details in the db_connect.php file to match the host MySQL installation
+        2) Configure php.ini and sendmail.ini files to enable mailService.php to send an email
 
 The default login credentials are 'admin' and 'password'
 
 Once logged in as an admin, the database data can be modified and deleted as required.
 Returning the index.php page WHILE LOGGED IN AS ADMIN will not change the stored data.
 However, once logged out, returning to the index.php page will add the original data to the database as needed.
+
+==================================================
+Suggest search parameters for the default data set
+==================================================
+
+1) Tubular OD 5.5 in, ID 4.56 in, 11.5 ppf
+Pressure: 1000 psi, Temperature: 100 degC, minimum restriction: 4.25 in
+Returns 2 tools both with CAD models
+
+2) Tubular OD: 6.625 in, ID: 6.135 in, Weight: 17 ppf
+Pressure: 5000 psi, Temperature: 150 degC, minimum restriction: 6 in
+Returns 2 tools both with CAD models
+
+3) Tubular OD: 7.625 in, ID: 7.125 in, Weight: 20 ppf
+Pressure: 2000 psi, Temperature: 50 degC, minimum restriction: 7 in
+Returns 2 tools, 1 tool has a CAD model

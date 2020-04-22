@@ -122,7 +122,7 @@ $tool2ID = insertToolIfRequired($db, 4,50,200,1000,10000,
     'https://www.3dvieweronline.com/members/Idb8ab596fde54c47e4b01c9936389dccc/8NhEmWBm8ULDDde');
 $tool3ID = insertToolIfRequired($db, 5.25, 20, 250, 200, 8000,
     'https://www.3dvieweronline.com/members/Idb8ab596fde54c47e4b01c9936389dccc/k2oGoQtuXeIZElo');
-$tool4ID = insertToolIfRequired($db, 6, 20, 200, 500, 9500,
+$tool4ID = insertToolIfRequired($db, 5.75, 20, 200, 500, 9500,
     'https://www.3dvieweronline.com/members/Idb8ab596fde54c47e4b01c9936389dccc/TnAYek0rTqQVA5G');
 $tool5ID = insertToolIfRequired($db,6.25, 20, 250, 1000, 10000, '');
 
