@@ -23,7 +23,7 @@ function readAllTubulars($db) {
     $index = 0;
 
     // Read data
-    $query = "SELECT tubularID, OD, ID, weight FROM tubulars";
+    $query = "SELECT tubularID, OD, ID, weight FROM tubulars ORDER BY OD ASC";
     $stmt = $db->prepare($query);
     $stmt->execute();
     $stmt->bind_result($tubularID, $OD, $ID, $weight);
@@ -39,16 +39,16 @@ function readAllTubulars($db) {
 }
 
 function checkIfTubularExists($db, $OD, $ID, $weight) {
-    $return = null;
-    $query = "SELECT tubularID FROM tubulars WHERE OD = ? and ID = ? and weight = ?";
+    $result = null;
+    $query = "SELECT tubularID FROM tubulars WHERE FORMAT(OD,5) = FORMAT(?,5) and FORMAT(ID,5) = FORMAT(?,5) and FORMAT(weight,5) = FORMAT(?,5)";
     $stmt = $db->prepare($query);
     $stmt->bind_param('ddd', $OD, $ID, $weight);
     $stmt->execute();
     $stmt->store_result();
-    $stmt->bind_result($return);
+    $stmt->bind_result($result);
     $stmt->fetch();
     $stmt->free_result();
-    return $return;
+    return $result;
 }
 
 function insertTubular($db, $OD, $ID, $weight) {
@@ -62,7 +62,7 @@ function insertTubular($db, $OD, $ID, $weight) {
 function updateTubular($db, $OD, $ID, $weight, $tubularId) {
     $query = "UPDATE tubulars SET OD = ?, ID = ?, weight = ? WHERE tubularID = ?";
     $stmt = $db->prepare($query);
-    $stmt->bind_param('dddd', $OD, $ID, $weight, $tubularId);
+    $stmt->bind_param('dddi', $OD, $ID, $weight, $tubularId);
     $stmt->execute();
     return ($stmt->affected_rows > 0);
 }

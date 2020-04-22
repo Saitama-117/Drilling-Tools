@@ -2,10 +2,11 @@
 session_start();
 
 // THIS SECTION DEVELOPMENT ONLY
-require_once "./Includes/Database/db_connect.php";
-include "./Includes/Database/userQueries.php";
-include "./Includes/Database/table-setup.php";
-$db->close();
+if (!isset($_SESSION['user'])) {
+    require_once "./Includes/Database/db_connect.php";
+    include "./Includes/Database/table-setup.php";
+    $db->close();
+}
 // THIS SECTION DEVELOPMENT ONLY
 ?>
 

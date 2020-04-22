@@ -25,7 +25,7 @@ function readAllTools($db) {
     $index = 0;
 
     // Read data
-    $query = "SELECT toolID, OD, minTemp, maxTemp, minPressure, maxPressure FROM tools";
+    $query = "SELECT toolID, OD, minTemp, maxTemp, minPressure, maxPressure FROM tools ORDER BY OD ASC";
     $stmt = $db->prepare($query);
     $stmt->execute();
     $stmt->bind_result($toolID, $OD, $minTemp, $maxTemp, $minPressure, $maxPressure);
@@ -43,16 +43,22 @@ function readAllTools($db) {
 }
 
 function checkIfToolExists($db, $OD, $minTemp, $maxTemp, $minPressure, $maxPressure, $CADurl) {
-    $return = null;
-    $query = "SELECT toolID FROM tools WHERE OD = ? and minTemp = ? and maxTemp = ? and minPressure = ? and maxPressure = ? and CADurl = ?";
-    $stmt = $db->prepare($query);
-    $stmt->bind_param('ddddds', $OD, $minTemp, $maxTemp, $minPressure, $maxPressure, $CADurl);
+    $result = null;
+    if ($CADurl !== '') {
+        $query = "SELECT toolID FROM tools WHERE OD = ? and minTemp = ? and maxTemp = ? and minPressure = ? and maxPressure = ? and CADurl = ?";
+        $stmt = $db->prepare($query);
+        $stmt->bind_param('ddddds', $OD, $minTemp, $maxTemp, $minPressure, $maxPressure, $CADurl);
+    } else {
+        $query = "SELECT toolID FROM tools WHERE OD = ? and minTemp = ? and maxTemp = ? and minPressure = ? and maxPressure = ? and CADurl IS NULL";
+        $stmt = $db->prepare($query);
+        $stmt->bind_param('ddddd', $OD, $minTemp, $maxTemp, $minPressure, $maxPressure);
+    }
     $stmt->execute();
     $stmt->store_result();
-    $stmt->bind_result($return);
+    $stmt->bind_result($result);
     $stmt->fetch();
     $stmt->free_result();
-    return $return;
+    return $result;
 }
 
 function insertTool($db, $OD, $minTemp, $maxTemp, $minPressure, $maxPressure, $CADurl) {
@@ -77,12 +83,12 @@ function updateTool($db, $toolId, $OD, $minTemp, $maxTemp, $minPressure, $maxPre
         $query = "UPDATE tools SET OD = ?, minTemp = ?, maxTemp = ?, minPressure = ?, maxPressure = ?, CADurl = ? 
                 where toolID = ?";
         $stmt = $db->prepare($query);
-        $stmt->bind_param('diiiisi', $OD, $minTemp, $maxTemp, $minPressure, $maxPressure, $CADurl, $toolId);
+        $stmt->bind_param('dddddsi', $OD, $minTemp, $maxTemp, $minPressure, $maxPressure, $CADurl, $toolId);
     } else {
         $query = "UPDATE tools SET OD = ?, minTemp = ?, maxTemp = ?, minPressure = ?, maxPressure = ?, CADurl = NULL 
                 where toolID = ?";
         $stmt = $db->prepare($query);
-        $stmt->bind_param('diiiii', $OD, $minTemp, $maxTemp, $minPressure, $maxPressure, $toolId);
+        $stmt->bind_param('dddddi', $OD, $minTemp, $maxTemp, $minPressure, $maxPressure, $toolId);
     }
 
     $stmt->execute();
@@ -104,7 +110,7 @@ function getToolsFromTubularIdTemperatureAndPressure($db, $tubularId, $temperatu
         AND (tools.minTemp <= ? AND tools.maxTemp >= ?) AND (tools.minPressure <= ? AND tools.maxPressure >= ?)
         AND tools.OD < ?";
     $stmt = $db->prepare($query);
-    $stmt->bind_param('iiiiid', $tubularId, $temperature, $temperature, $pressure, $pressure, $restriction);
+    $stmt->bind_param('iddddd', $tubularId, $temperature, $temperature, $pressure, $pressure, $restriction);
     $stmt->execute();
     $stmt->bind_result($OD, $minTemp, $maxTemp, $minPressure, $maxPressure, $CADurl);
     while ($stmt->fetch()) {
