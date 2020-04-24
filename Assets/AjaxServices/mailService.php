@@ -5,7 +5,7 @@ function validFormData($firstName, $lastName, $email, $subject) {
     $validFirstName = preg_match("/^[a-zA-Z]*$/",$firstName);
     $validLastName = preg_match("/^[a-zA-Z]*$/",$lastName);
     $validEmail = filter_var($email, FILTER_VALIDATE_EMAIL);
-    $validSubject = preg_match("/^[ a-zA-Z0-9.,?]*$/",$subject);
+    $validSubject = preg_match("/^[\/,.?\w\s£$\-]*$/",$subject);
 
     $validForm = $validFirstName && $validLastName && $validEmail;
     $validForm = $validForm && $validSubject;
@@ -35,20 +35,17 @@ if (IsSet($_POST) && IsSet($_POST["firstname"]) && IsSet($_POST["lastname"])
         $headers = "From: " . $fromEmail;
 
         // PHP.ini and sendmail.ini files must be correctly setup
-        // Using Gmail requires an SSL certificate which must be installed on the web server
         // Using Gamil also requires turn on less secure apps
-        //$return = mail($toEmail, $emailSubject, $emailBody, $headers);
-        $return = true;
-        if ($return) {
-            //$message = $toEmail . "\n\n" . "\n\n" . $emailSubject . "\n\n" . $emailBody . "\n\n" . $headers;
+        if (@mail($toEmail, $emailSubject, $emailBody, $headers)) {
             $message = "Message sent to the Specialist Cutting Tools team";
         } else {
-            $message = "Message not sent - contact the site administrator";
+            $message = "Message Not Sent \n\nPlease contact Specialist Tools on +44 1224 123456";
         }
 
     } else {
         // Invalid form data
-        $message = "Error in Form Data";
+        $message = "Error in Form Data\n\nAlphanumeric characters only for first and last names\n\n";
+        $message .= "Alphanumeric characters . , ? £ $ - / only for message";
     }
 
     echo json_encode(['message' => $message]);
