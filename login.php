@@ -51,7 +51,7 @@ $db->close();
 
 <main>
     <div class="imgcontainer">
-        <img src="="./Assets/HTML/images/Icon.png" alt="Avatar" class="avatar">
+        <img src="./Assets/images/Icon.png" alt="Avatar" class="avatar">
     </div>
     <?php if ($userFeedback != null) echo '<p id="feedback">' . $userFeedback . '</p>' ?>
     <form action="" method="post">
